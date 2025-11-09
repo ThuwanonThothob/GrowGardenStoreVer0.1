@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ตะกร้า | GrowGarden Store</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">GrowGarden</div>
+      <ul>
+        <li><a href="home.html">STORE</a></li>
+        <li><a href="shop.html">SHOP</a></li>
+        <li><a href="checkout.html" class="active">CART (<span id="cartCount">0</span>)</a></li>
+        <li><a href="#" id="loginLink">LOGOUT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <h2>ตะกร้าสินค้าของคุณ</h2>
+    <div id="cartItems"></div>
+    <div class="summary">
+      <h3>ข้อมูลการจัดส่ง</h3>
+      <div id="userInfo"></div>
+      <button id="confirmOrder">ยืนยันคำสั่งซื้อ</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 GrowGarden Store. สงวนลิขสิทธิ์ทั้งหมด.</p>
+  </footer>
+  <script src="JS/script.js"></script>
+</body>
+</html>

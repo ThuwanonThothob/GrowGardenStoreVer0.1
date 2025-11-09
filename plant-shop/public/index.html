@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ล็อกอิน | GrowGarden Store</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <div class="login-card">
+      <h1>ยินดีต้อนรับ</h1>
+      <p>กรอกข้อมูลเพื่อเริ่มช้อปปิ้ง</p>
+      <form id="loginForm">
+        <input type="text" id="firstName" placeholder="ชื่อ" required />
+        <input type="text" id="lastName" placeholder="นามสกุล" required />
+        <select id="gender" required>
+          <option value="" disabled selected>เพศ</option>
+          <option value="ชาย">ชาย</option>
+          <option value="หญิง">หญิง</option>
+          <option value="อื่นๆ">อื่นๆ</option>
+        </select>
+        <input type="number" id="age" placeholder="อายุ" min="1" required />
+        <textarea id="address" placeholder="ที่อยู่" required></textarea>
+        <select id="province" required>
+          <option value="" disabled selected>จังหวัด</option>
+          <option value="กรุงเทพมหานคร">กรุงเทพมหานคร</option>
+          <option value="เชียงใหม่">เชียงใหม่</option>
+          <option value="ภูเก็ต">ภูเก็ต</option>
+          <option value="ขอนแก่น">ขอนแก่น</option>
+          <!-- เพิ่มจังหวัดอื่น ๆ ได้ -->
+        </select>
+        <button type="submit">เข้าสู่ร้าน</button>
+      </form>
+    </div>
+  </div>
+  <script src="JS/script.js"></script>
+</body>
+</html>
