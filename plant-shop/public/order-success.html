@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>สั่งซื้อสำเร็จ | GrowGarden Store</title>
   <link rel="stylesheet" href="CSS/style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -14,7 +13,8 @@
       <ul>
         <li><a href="home.html">STORE</a></li>
         <li><a href="shop.html">SHOP</a></li>
-        <li><a href="checkout.html">CART (0)</a></li>
+        <li><a href="checkout.html">CART (<span id="cartCount">0</span>)</a></li>
+        <li><a href="orders.html">คำสั่งซื้อ</a></li>
         <li><a href="#" id="loginLink">LOGOUT</a></li>
       </ul>
     </nav>
@@ -22,16 +22,21 @@
 
   <main class="success-page">
     <div class="success-card">
+      <i class="fas fa-check-circle" style="font-size: 4rem; color: #2e7d32; margin-bottom: 1rem;"></i>
       <h1>สั่งซื้อสำเร็จ!</h1>
       <p>ขอบคุณที่อุดหนุน GrowGarden</p>
-      <div id="orderSummary"></div>
-      <button onclick="location.href='home.html'">กลับสู่หน้าหลัก</button>
+      <div id="orderSummary" style="margin: 1.5rem 0; padding: 1.5rem; background: #f0f8f0; border-radius: 12px; text-align: left;"></div>
+      <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+        <button onclick="location.href='home.html'" style="flex: 1; min-width: 140px;">กลับหน้าหลัก</button>
+        <button onclick="location.href='orders.html'" style="flex: 1; min-width: 140px; background: #2e7d32;">ดูประวัติคำสั่งซื้อ</button>
+      </div>
     </div>
   </main>
 
   <footer>
-    <p>&copy; 2025 GrowGarden Store. สงวนลิขสิทธิ์ทั้งหมด.</p>
+    <p>© 2025 GrowGarden Store. สงวนลิขสิทธิ์ทั้งหมด.</p>
   </footer>
+
   <script src="JS/script.js"></script>
 </body>
 </html>
