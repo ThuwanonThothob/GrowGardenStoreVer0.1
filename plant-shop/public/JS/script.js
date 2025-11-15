@@ -1,15 +1,18 @@
 // ===============================================
-//          SCRIPT.JS - เวอร์ชันสมบูรณ์สุด + ประวัติคำสั่งซื้อ
+//          SCRIPT.JS - (อัปเดต v2 - แก้ไขระบบ Order)
 // ===============================================
 
 // === ฐานข้อมูลสินค้า ===
 const products = [
-  { id: 1, name: "ต้นลาเวนเดอร์", price: 300, img: "https://images.unsplash.com/photo-1593486719159-3c6c2d7b8b6c?w=800", gallery: ["https://images.unsplash.com/photo-1593486719159-3c6c2d7b8b6c?w=800","https://images.unsplash.com/photo-1583258293977-93b1d1d6b0b6?w=800","https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800"], desc: "หอมสดชื่น ช่วยผ่อนคลาย", benefit: "ลดความเครียด ช่วยให้นอนหลับดี ไล่แมลง", care: "รดน้ำ 2-3 วัน/ครั้ง ชอบแดดอ่อน ระบายน้ำดี", season: "ปลูกได้ตลอดปี", location: "ในร่ม หน้าต่าง ระเบียง", category: "ในร่ม" },
-  { id: 2, name: "ช่อดอกไม้สวย", price: 500, img: "https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800", gallery: ["https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800","https://images.unsplash.com/photo-1587302164676-8e9c04d7e0b6?w=800","https://images.unsplash.com/photo-1593486719159-3c6c2d7b8b6c?w=800"], desc: "จัดดอกไม้สดใหม่ทุกวัน", benefit: "ตกแต่งบ้าน วันเกิด ของขวัญ", care: "เปลี่ยนน้ำทุกวัน ตัดก้านเฉียง", season: "ตลอดปี", location: "โต๊ะอาหาร ห้องนั่งเล่น", category: "ดอกไม้" },
-  { id: 3, name: "ต้นมอนสเตอร่า", price: 350, img: "https://images.unsplash.com/photo-1593484713504-7d2ed0e1e7e2?w=800", gallery: ["https://images.unsplash.com/photo-1593484713504-7d2ed0e1e7e2?w=800","https://images.unsplash.com/photo-1600414833392-7a2e9a0d2b7a?w=800","https://images.unsplash.com/photo-1583258293977-93b1d1d6b0b6?w=800"], desc: "ทนทาน ดูแลง่าย", benefit: "ฟอกอากาศ ดูดสารพิษ", care: "รดน้ำเมื่อดินแห้ง ชอบแสงรำไร", season: "ในร่ม ตลอดปี", location: "มุมห้อง มุมโต๊ะทำงาน", category: "ในร่ม" },
-  { id: 4, name: "ต้นไผ่นำโชค", price: 180, img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800", gallery: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800","https://images.unsplash.com/photo-1600585154525-2b5b2c2b2b2b?w=800","https://images.unsplash.com/photo-1600585154363-2b5b2c2b2b2b?w=800"], desc: "เรียกทรัพย์ ปลูกในบ้านได้", benefit: "เสริมโชคลาภ ฮวงจุ้ย", care: "เปลี่ยนน้ำทุก 7 วัน ชอบแสงรำไร", season: "ในร่ม ตลอดปี", location: "โต๊ะทำงาน หน้าประตู", category: "เสริมโชค" },
-  { id: 5, name: "กุหลาบแดง", price: 250, img: "https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800", gallery: ["https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800","https://images.unsplash.com/photo-1587302164676-8e9c04d7e0b6?w=800","https://images.unsplash.com/photo-1593486719159-3c6c2d7b8b6c?w=800"], desc: "สื่อถึงความรัก", benefit: "แสดงความรัก ของขวัญวันวาเลนไทน์", care: "ตัดดอกเก่า รดน้ำเช้า-เย็น", season: "ฤดูหนาว", location: "ระเบียง หน้าต่าง", category: "ดอกไม้" },
-  { id: 6, name: "ต้นไม้ผสม", price: 400, img: "https://images.unsplash.com/photo-1587302164676-8e9c04d7e0b6?w=800", gallery: ["https://images.unsplash.com/photo-1587302164676-8e9c04d7e0b6?w=800","https://images.unsplash.com/photo-1593486719159-3c6c2d7b8b6c?w=800","https://images.unsplash.com/photo-1561181286-1b5f7d3b3b0b?w=800"], desc: "ตกแต่งสวนได้หลากหลาย", benefit: "เพิ่มความเขียวขจี ฟอกอากาศ", care: "รดน้ำวันละครั้ง ใส่ปุ๋ยเดือนละครั้ง", season: "ฤดูฝน-ฤดูหนาว", location: "สวน ระเบียง", category: "กลางแจ้ง" }
+  { id: 1, name: "Sunflower", price: 300, img: "images/Sunflower.png", gallery: ["images/Sunflower.png","images/Sunflower.png","images/Sunflower.png"], desc: "หอมสดชื่น ช่วยผ่อนคลาย", benefit: "ลดความเครียด ช่วยให้นอนหลับดี ไล่แมลง", care: "รดน้ำ 2-3 วัน/ครั้ง ชอบแดดอ่อน ระบายน้ำดี", season: "ปลูกได้ตลอดปี", location: "ในร่ม หน้าต่าง ระเบียง", category: "ในร่ม" },
+  { id: 2, name: "Hydrangea", price: 500, img: "images/Hydrangea.png", gallery: ["images/Hydrangea.png","images/Hydrangea.png","images/Hydrangea.png"], desc: "จัดดอกไม้สดใหม่ทุกวัน", benefit: "ตกแต่งบ้าน วันเกิด ของขวัญ", care: "เปลี่ยนน้ำทุกวัน ตัดก้านเฉียง", season: "ตลอดปี", location: "โต๊ะอาหาร ห้องนั่งเล่น", category: "ดอกไม้" },
+  { id: 3, name: "Wild Himalayan Cherry", price: 350, img: "images/Wild Himalayan Cherry.png", gallery: ["images/Wild Himalayan Cherry.png","images/Wild Himalayan Cherry.png","images/Wild Himalayan Cherry.png"], desc: "ทนทาน ดูแลง่าย", benefit: "ฟอกอากาศ ดูดสารพิษ", care: "รดน้ำเมื่อดินแห้ง ชอบแสงรำไร", season: "ในร่ม ตลอดปี", location: "มุมห้อง มุมโต๊ะทำงาน", category: "ในร่ม" },
+  { id: 4, name: "Celosia", price: 180, img: "images/Celosia.png", gallery: ["images/Celosia.png","images/Celosia.png","images/Celosia.png"], desc: "เรียกทรัพย์ ปลูกในบ้านได้", benefit: "เสริมโชคลาภ ฮวงจุ้ย", care: "เปลี่ยนน้ำทุก 7 วัน ชอบแสงรำไร", season: "ในร่ม ตลอดปี", location: "โต๊ะทำงาน หน้าประตู", category: "เสริมโชค" },
+  { id: 5, name: "Aster Peacock", price: 250, img: "images/Aster Peacock.png", gallery: ["images/Aster Peacock.png","images/Aster Peacock.png","images/Aster Peacock.png"], desc: "สื่อถึงความรัก", benefit: "แสดงความรัก ของขวัญวันวาเลนไทน์", care: "ตัดดอกเก่า รดน้ำเช้า-เย็น", season: "ฤดูหนาว", location: "ระเบียง หน้าต่าง", category: "ดอกไม้" },
+  { id: 6, name: "Tulip", price: 400, img: "images/Tulip.png", gallery: ["images/Tulip.png","images/Tulip.png","images/Tulip.png"], desc: "ตกแต่งสวนได้หลากหลาย", benefit: "เพิ่มความเขียวขจี ฟอกอากาศ", care: "รดน้ำวันละครั้ง ใส่ปุ๋ยเดือนละครั้ง", season: "ฤดูฝน-ฤดูหนาว", location: "สวน ระเบียง", category: "กลางแจ้ง" },
+  { id: 7, name: "Chrysanthemum", price: 400, img: "images/Chrysanthemum.png", gallery: ["images/Chrysanthemum.png","images/Chrysanthemum.png","images/Chrysanthemum.png"], desc: "ตกแต่งสวนได้หลากหลาย", benefit: "เพิ่มความเขียวขจี ฟอกอากาศ", care: "รดน้ำวันละครั้ง ใส่ปุ๋ยเดือนละครั้ง", season: "ฤดูฝน-ฤดูหนาว", location: "สวน ระเบียง", category: "กลางแจ้ง" },
+  { id: 8, name: "Cutter Flower", price: 400, img: "images/Cutter Flower.png", gallery: ["images/Cutter Flower.png","images/Cutter Flower.png","images/Cutter Flower.png"], desc: "ตกแต่งสวนได้หลากหลาย", benefit: "เพิ่มความเขียวขจี ฟอกอากาศ", care: "รดน้ำวันละครั้ง ใส่ปุ๋ยเดือนละครั้ง", season: "ฤดูฝน-ฤดูหนาว", location: "สวน ระเบียง", category: "กลางแจ้ง" },
+  { id: 9, name: "Red lily", price: 400, img: "images/Red lily.png", gallery: ["images/Red lily.png","images/Red lily.png","images/Red lily.png"], desc: "ตกแต่งสวนได้หลากหลาย", benefit: "เพิ่มความเขียวขจี ฟอกอากาศ", care: "รดน้ำวันละครั้ง ใส่ปุ๋ยเดือนละครั้ง", season: "ฤดูฝน-ฤดูหนาว", location: "สวน ระเบียง", category: "กลางแจ้ง" }
 ];
 
 // === อัปเดตจำนวนตะกร้า ===
@@ -219,7 +222,8 @@ if (document.getElementById('cartItems')) {
       </div>
     `;
 
-    const user = JSON.parse(localStorage.getItem('user'));
+    // [แก้ไข] ดึงข้อมูล user จาก 'currentUser'
+    const user = JSON.parse(localStorage.getItem('currentUser'));
     if (user) {
       userInfo.innerHTML = `
         <p><strong>ชื่อ:</strong> ${user.firstName} ${user.lastName}</p>
@@ -244,8 +248,14 @@ if (document.getElementById('cartItems')) {
 
   document.getElementById('confirmOrder').onclick = () => {
     if (cart.length === 0) return alert('ตะกร้าว่างเปล่า');
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) return alert('กรุณาสมัครสมาชิกก่อน'), location.href = 'index.html';
+    
+    // [แก้ไข] ดึง user จาก 'currentUser' และเช็ค email
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user || !user.email) {
+      alert('เกิดข้อผิดพลาด: ไม่พบข้อมูลผู้ใช้ กรุณาล็อกอินใหม่');
+      location.href = 'index.html';
+      return;
+    }
 
     const btn = document.getElementById('confirmOrder');
     btn.disabled = true;
@@ -256,16 +266,21 @@ if (document.getElementById('cartItems')) {
       const grandTotal = total + 50 + (total * 0.07);
       const order = {
         id: Date.now().toString().slice(-6),
-        user,
+        user, // เก็บข้อมูล user ณ ตอนที่สั่ง
         cart: [...cart],
         total: grandTotal,
         date: new Date().toLocaleString('th-TH')
       };
 
-      // บันทึกประวัติคำสั่งซื้อ
-      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      // [แก้ไข] บันทึกคำสั่งซื้อโดยใช้ Key ที่ผูกกับอีเมล
+      const orderKey = 'orders_' + user.email;
+      const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
       orders.push(order);
-      localStorage.setItem('orders', JSON.stringify(orders));
+      localStorage.setItem(orderKey, JSON.stringify(orders));
+      
+      // [แก้ไข] ใช้ sessionStorage เพื่อส่ง key และ id ของออเดอร์ล่าสุดไปหน้า success
+      sessionStorage.setItem('lastOrderKey', orderKey);
+      sessionStorage.setItem('lastOrderId', order.id);
 
       localStorage.removeItem('cart');
       updateCartCount();
@@ -278,58 +293,83 @@ if (document.getElementById('cartItems')) {
 
 // === Order Success ===
 if (document.getElementById('orderSummary')) {
-  const orders = JSON.parse(localStorage.getItem('orders')) || [];
-  const lastOrder = orders[orders.length - 1];
-  if (lastOrder) {
-    let items = '';
-    lastOrder.cart.forEach(i => items += `<li>${i.name} (x${i.qty}) - ${i.price * i.qty} บาท</li>`);
-    document.getElementById('orderSummary').innerHTML = `
-      <p><strong>เลขคำสั่งซื้อ:</strong> #${lastOrder.id}</p>
-      <p><strong>ชื่อลูกค้า:</strong> ${lastOrder.user.firstName} ${lastOrder.user.lastName}</p>
-      <p><strong>รวมทั้งหมด:</strong> ${lastOrder.total.toFixed(2)} บาท</p>
-      <p><strong>สั่งซื้อเมื่อ:</strong> ${lastOrder.date}</p>
-      <ul style="margin-top:1rem; text-align:left;">${items}</ul>
-    `;
+  // [แก้ไข] ดึง key และ id ของออเดอร์ล่าสุดจาก sessionStorage
+  const orderKey = sessionStorage.getItem('lastOrderKey');
+  const orderId = sessionStorage.getItem('lastOrderId');
+
+  if (orderKey && orderId) {
+    const orders = JSON.parse(localStorage.getItem(orderKey)) || [];
+    const lastOrder = orders.find(o => o.id === orderId); // ค้นหาออเดอร์ที่ตรงกัน
+
+    if (lastOrder) {
+      let items = '';
+      lastOrder.cart.forEach(i => items += `<li>${i.name} (x${i.qty}) - ${i.price * i.qty} บาท</li>`);
+      document.getElementById('orderSummary').innerHTML = `
+        <p><strong>เลขคำสั่งซื้อ:</strong> #${lastOrder.id}</p>
+        <p><strong>ชื่อลูกค้า:</strong> ${lastOrder.user.firstName} ${lastOrder.user.lastName}</p>
+        <p><strong>รวมทั้งหมด:</strong> ${lastOrder.total.toFixed(2)} บาท</p>
+        <p><strong>สั่งซื้อเมื่อ:</strong> ${lastOrder.date}</p>
+        <ul style="margin-top:1rem; text-align:left;">${items}</ul>
+      `;
+    }
+    // [แก้ไข] ล้าง sessionStorage หลังจากใช้งานแล้ว
+    sessionStorage.removeItem('lastOrderKey');
+    sessionStorage.removeItem('lastOrderId');
+  } else {
+    document.getElementById('orderSummary').innerHTML = '<p>ไม่พบข้อมูลคำสั่งซื้อล่าสุด</p>';
   }
 }
 
 // === หน้า orders.html ===
+let userOrders = []; // [แก้ไข] สร้างตัวแปร global เพื่อให้ modal ใช้งานได้
+
 if (document.getElementById('ordersList')) {
   const ordersList = document.getElementById('ordersList');
-  const orders = JSON.parse(localStorage.getItem('orders')) || [];
+  
+  // [แก้ไข] ดึงข้อมูล user ปัจจุบัน
+  const user = JSON.parse(localStorage.getItem('currentUser'));
 
-  if (orders.length === 0) {
-    ordersList.innerHTML = `
-      <div style="text-align:center; padding: 3rem; color: #999;">
-        <i class="fas fa-receipt" style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;"></i>
-        <p style="font-size: 1.2rem;">ยังไม่มีคำสั่งซื้อ</p>
-        <a href="shop.html" style="color: #2e7d32; text-decoration: underline;">ไปช้อปปิ้งเลย!</a>
-      </div>
-    `;
+  if (!user || !user.email) {
+    ordersList.innerHTML = `<p style="text-align:center; color:#999;">กรุณาล็อกอินเพื่อดูประวัติคำสั่งซื้อ</p>`;
   } else {
-    orders.reverse().forEach(order => {
-      const div = document.createElement('div');
-      div.className = 'order-card';
-      div.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div>
-            <strong>คำสั่งซื้อ #${order.id}</strong><br>
-            <small>${order.date}</small>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-weight: 600; color: #2e7d32;">${order.total.toFixed(2)} บาท</div>
-            <button onclick="openOrderModal('${order.id}')" style="margin-top: 0.5rem; background: #2e7d32; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem;">
-              ดูรายละเอียด
-            </button>
-          </div>
+    // [แก้ไข] ดึงคำสั่งซื้อจาก key ที่ผูกกับอีเมล
+    const orderKey = 'orders_' + user.email;
+    userOrders = JSON.parse(localStorage.getItem(orderKey)) || []; // [แก้ไข] กำหนดค่าให้ตัวแปร global
+
+    if (userOrders.length === 0) {
+      ordersList.innerHTML = `
+        <div style="text-align:center; padding: 3rem; color: #999;">
+          <i class="fas fa-receipt" style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;"></i>
+          <p style="font-size: 1.2rem;">ยังไม่มีคำสั่งซื้อ</p>
+          <a href="shop.html" style="color: #2e7d32; text-decoration: underline;">ไปช้อปปิ้งเลย!</a>
         </div>
       `;
-      ordersList.appendChild(div);
-    });
+    } else {
+      userOrders.slice().reverse().forEach(order => { // [แก้ไข] ใช้ userOrders และ .slice() เพื่อไม่ให้ reverse กระทบต้นฉบับ
+        const div = document.createElement('div');
+        div.className = 'order-card';
+        div.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <strong>คำสั่งซื้อ #${order.id}</strong><br>
+              <small>${order.date}</small>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-weight: 600; color: #2e7d32;">${order.total.toFixed(2)} บาท</div>
+              <button onclick="openOrderModal('${order.id}')" style="margin-top: 0.5rem; background: #2e7d32; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-size: 0.9rem;">
+                ดูรายละเอียด
+              </button>
+            </div>
+          </div>
+        `;
+        ordersList.appendChild(div);
+      });
+    }
   }
 
   window.openOrderModal = (orderId) => {
-    const order = orders.find(o => o.id === orderId);
+    // [แก้ไข] ค้นหาจาก userOrders
+    const order = userOrders.find(o => o.id === orderId);
     if (!order) return;
 
     document.getElementById('modalOrderId').textContent = `คำสั่งซื้อ #${order.id}`;
@@ -367,42 +407,177 @@ if (document.getElementById('ordersList')) {
   };
 }
 
-// === สมัครสมาชิก ===
-const loginForm = document.getElementById('loginForm');
-if (loginForm) {
-  loginForm.onsubmit = (e) => {
-    e.preventDefault();
-    const age = parseInt(document.getElementById('age').value);
-    if (isNaN(age) || age < 1 || age > 120) return alert('กรุณาใส่อายุให้ถูกต้อง');
-    const user = {
-      firstName: document.getElementById('firstName').value,
-      lastName: document.getElementById('lastName').value,
-      gender: document.getElementById('gender').value,
-      age: age,
-      address: document.getElementById('address').value,
-      province: document.getElementById('province').value
-    };
-    localStorage.setItem('user', JSON.stringify(user));
-    location.href = 'home.html';
+
+// ===============================================
+// ระบบสมัครสมาชิก + ล็อกอินด้วย Email & Password (แบบสมบูรณ์)
+// (ส่วนนี้จะทำงานร่วมกับ index.html ใหม่)
+// ===============================================
+
+const authForm = document.getElementById('authForm');
+const registerFields = document.getElementById('registerFields');
+const formTitle = document.getElementById('formTitle');
+const formDesc = document.getElementById('formDesc');
+const submitBtn = document.getElementById('submitBtn');
+const toggleText = document.getElementById('toggleText');
+
+let isLoginMode = true; // [แก้ไข] เริ่มต้นเป็นโหมดล็อกอิน
+
+// ถ้าเคยสมัครแล้ว → เปิดหน้าเป็น "เข้าสู่ระบบ" ทันที
+// [แก้ไข] ปรับปรุง: ถ้ายังไม่เคยมีใครสมัครเลย ให้เริ่มที่ "สมัครสมาชิก"
+if (!localStorage.getItem('users')) {
+  isLoginMode = false;
+}
+
+function updateFormMode() {
+  if (isLoginMode) {
+    registerFields.style.display = 'none';
+    formTitle.textContent = 'ยินดีต้อนรับกลับ';
+    formDesc.textContent = 'เข้าสู่ระบบ GrowGarden Store';
+    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ';
+    toggleText.innerHTML = 'ยังไม่มีบัญชี? <a href="#" id="toggleLink" style="color:#2e7d32; text-decoration:underline;">สมัครสมาชิกที่นี่</a>';
+    
+    // ทำให้ช่อง register ไม่ required ตอนล็อกอิน
+    registerFields.querySelectorAll('input, select, textarea').forEach(el => el.required = false);
+  } else {
+    registerFields.style.display = 'flex';
+    formTitle.textContent = 'สมัครสมาชิก GrowGarden';
+    formDesc.textContent = 'กรอกข้อมูลเพื่อเริ่มช้อปปิ้งครั้งแรก';
+    submitBtn.innerHTML = '<i class="fas fa-user-plus"></i> สมัครสมาชิก';
+    toggleText.innerHTML = 'มีบัญชีอยู่แล้ว? <a href="#" id="toggleLink" style="color:#2e7d32; text-decoration:underline;">เข้าสู่ระบบที่นี่</a>';
+    
+    // ทำให้ช่อง register กลับมา required ตอนสมัคร
+    registerFields.querySelectorAll('input, select, textarea').forEach(el => {
+        if(el.id !== 'age') el.required = true; // 'age' เป็น number อาจจะไม่ต้อง required
+    });
+    // ยกเว้น input ที่ซ่อนอยู่ (ถ้ามี)
+    document.getElementById('firstName').required = true;
+    document.getElementById('lastName').required = true;
+    document.getElementById('gender').required = true;
+    document.getElementById('age').required = true;
+    document.getElementById('address').required = true;
+    document.getElementById('province').required = true;
+  }
+  
+  // ต้องผูก event ใหม่ทุกครั้งที่ toggleText ถูกเขียนทับ
+  document.getElementById('toggleLink').onclick = (e) => {
+      e.preventDefault();
+      isLoginMode = !isLoginMode;
+      updateFormMode();
   };
 }
 
-// === สถานะล็อกอิน ===
+// สลับโหมด สมัคร ↔ ล็อกอิน (เรียกใช้ครั้งแรก)
+if (toggleText) {
+    updateFormMode();
+}
+
+
+// ส่งฟอร์ม (สมัครหรือล็อกอิน)
+if (authForm) {
+  authForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (isLoginMode) {
+      // === ล็อกอิน ===
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('loggedIn', 'true');
+        showToast(`ยินดีต้อนรับกลับ ${user.firstName}!`);
+        setTimeout(() => location.href = 'home.html', 1200);
+      } else {
+        alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+      }
+
+    } else {
+      // === สมัครสมาชิก ===
+      if (password.length < 6) return alert('รหัสผ่านต้อง 6 ตัวอักษรขึ้นไป');
+
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      if (users.some(u => u.email === email)) return alert('อีเมลนี้ถูกใช้แล้ว');
+
+      const newUser = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: email,
+        password: password, // ในชีวิตจริงควร hash รหัสผ่านก่อนเก็บ
+        gender: document.getElementById('gender').value,
+        age: document.getElementById('age').value,
+        address: document.getElementById('address').value.trim(),
+        province: document.getElementById('province').value
+      };
+
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('currentUser', JSON.stringify(newUser));
+      localStorage.setItem('loggedIn', 'true');
+
+      showToast('สมัครสมาชิกสำเร็จ! กำลังพาไปหน้าหลัก');
+      setTimeout(() => location.href = 'home.html', 1200);
+    }
+  };
+}
+
+// === ป้องกันเข้าหน้าโดยไม่ล็อกอิน ===
+const protectedPages = ['home.html', 'shop.html', 'checkout.html', 'orders.html', 'order-success.html'];
+const currentPage = location.pathname.split('/').pop();
+
+if (protectedPages.includes(currentPage)) {
+  if (localStorage.getItem('loggedIn') !== 'true') {
+    alert('กรุณาเข้าสู่ระบบก่อน');
+    location.href = 'index.html';
+  }
+}
+// [แก้ไข] ถ้าล็อกอินแล้ว เข้าหน้า index.html ให้เด้งไป home
+if (currentPage === 'index.html' && localStorage.getItem('loggedIn') === 'true') {
+  location.href = 'home.html';
+}
+
+
+// === ปุ่ม LOGOUT ===
 document.querySelectorAll('#loginLink').forEach(link => {
-  const user = localStorage.getItem('user');
-  if (user) {
+  if (localStorage.getItem('loggedIn') === 'true') {
     link.textContent = 'LOGOUT';
+    link.href = '#';
     link.onclick = (e) => {
       e.preventDefault();
-      localStorage.removeItem('user');
+      localStorage.removeItem('loggedIn');
+      localStorage.removeItem('currentUser');
       localStorage.removeItem('cart');
-      location.href = 'index.html';
+      // [แก้ไข] ล้าง session storage ด้วย
+      sessionStorage.removeItem('lastOrderKey');
+      sessionStorage.removeItem('lastOrderId');
+      showToast('ออกจากระบบแล้ว');
+      setTimeout(() => location.href = 'index.html', 1000);
     };
   } else {
+    link.textContent = 'เข้าสู่ระบบ';
     link.href = 'index.html';
-    link.textContent = 'สมัคร/ล็อกอิน';
   }
 });
 
-// === เริ่มต้น ===
-updateCartCount();
+// === แสดงข้อมูลผู้ใช้ใน Checkout ===
+if (document.getElementById('userInfo')) {
+  const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  if (user.email) {
+    document.getElementById('userInfo').innerHTML = `
+      <div style="background:#f0f8f0; padding:1rem; border-radius:12px; margin-bottom:1rem; border:1px solid #a8e6a8;">
+        <p style="margin:0.4rem 0; font-weight:600; color:#2e7d32;">ข้อมูลการจัดส่ง</p>
+        <p style="margin:0.3rem 0;"><strong>ชื่อ:</strong> ${user.firstName} ${user.lastName}</p>
+        <p style="margin:0.3rem 0;"><strong>อีเมล:</strong> ${user.email}</p>
+        <p style="margin:0.3rem 0;"><strong>ที่อยู่:</strong> ${user.address}, ${user.province}</p>
+      </div>
+    `;
+  }
+}
+
+// === เริ่มต้นอัปเดตตะกร้า ===
+// ตรวจสอบว่าหน้านี้ไม่ใช่หน้า index.html ก่อนอัปเดตตะกร้า (เพราะอาจจะยังไม่ได้ล็อกอิน)
+if (currentPage !== 'index.html') {
+    updateCartCount();
+}
